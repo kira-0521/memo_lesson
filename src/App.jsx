@@ -2,9 +2,12 @@ import { useCallback } from 'react'
 import { useState } from 'react'
 import './App.css'
 import { Child } from './components/Child'
+import { useTestCb } from './hooks/useTestCb'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const testHook = useTestCb()
 
   const cbTest = useCallback(() => {
     console.log('called cbTest')
@@ -18,7 +21,7 @@ function App() {
         style={{ marginLeft: '30px' }}>
         カウントアップ
       </button>
-      <Child fn={cbTest} />
+      <Child fn={cbTest} testCb2={testHook.testCb2} />
     </div>
   )
 }
